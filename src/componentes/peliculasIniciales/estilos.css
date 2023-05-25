@@ -1,0 +1,17 @@
+.seccion_peliculas {
+  margin: 0 auto;
+  max-width: 1200px;
+  padding: 20px 0;
+  padding-bottom: 80px;
+}
+
+.lista_peliculas {
+  display: flex;
+  gap: 10px;
+  overflow-x: scroll;
+  margin: 10px 0;
+}
+
+.lista_imagen {
+  width: 200px;
+}
