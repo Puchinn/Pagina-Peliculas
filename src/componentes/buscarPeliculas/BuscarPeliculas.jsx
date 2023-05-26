@@ -1,23 +1,24 @@
-import './buscarPeliculas.css'
 import { Form } from 'react-router-dom'
 
 export function BuscarPeliculas() {
   return (
-    <section className='buscarPeliculas'>
-      <div className=''>
-        <h1 className='buscar_titulo'>Buscar Peliculas</h1>
-        <p className=''>Alguna buena descripcion</p>
+    <div className='hero py-32 bg-base-200'>
+      <div className='hero-content text-center'>
+        <div className='max-w-lg'>
+          <h1 className='text-5xl font-bold'>Buscar Peliculas</h1>
+          <p className='py-4 text-sm'>SOLO PELICULAS 🤙🏾</p>
+          <Form action='/busqueda' className='flex gap-x-2'>
+            <input
+              className='input w-full text-lg'
+              type='text'
+              name='query'
+              placeholder='Buscar pelicula'
+              required
+            />
+            <button className='btn'>Buscar</button>
+          </Form>
+        </div>
       </div>
-      <Form action='/busqueda' className='formularioBuscar'>
-        <input
-          className='buscar_input'
-          type='text'
-          name='query'
-          placeholder='Buscar pelicula'
-          required
-        />
-        <button className='buscar_boton'>Buscar</button>
-      </Form>
-    </section>
+    </div>
   )
 }
