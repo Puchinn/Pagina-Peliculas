@@ -5,7 +5,11 @@ export function CambiarIdioma() {
 
   return (
     <div>
-      <select name='' id='' value={idioma} onChange={updateLanguage}>
+      <select
+        className='select w-full max-w-xs'
+        value={idioma}
+        onChange={updateLanguage}
+      >
         <option value='es-MX'>Español</option>
         <option value='en-US'>Ingles</option>
         <option value='pt-BR'>Portugues</option>
