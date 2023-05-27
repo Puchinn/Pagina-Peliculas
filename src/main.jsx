@@ -36,7 +36,7 @@ const router = createBrowserRouter([
         element: <PeliculaDetalles />,
       },
       {
-        path: '/busqueda',
+        path: '/busqueda/page?/:page?',
         element: <ResultadoBusqueda />,
       },
     ],
