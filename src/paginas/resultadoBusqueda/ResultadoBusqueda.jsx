@@ -1,22 +1,15 @@
-import { Filtros } from '../../componentes/seccionFiltros/Filtros'
 import { useBusqueda } from './useBusqueda'
-import { ListaDePeliculas } from '../../componentes/listaDePeliculas/ListaDePeliculas'
-import { Paginacion } from '../../componentes/paginacion/Paginacion'
+import { StyledPage } from '../paginasDePeliculas/styledPage/StyledPage'
 
 export function ResultadoBusqueda() {
-  const { peliculas, titulo } = useBusqueda()
+  const { peliculas, titulo, paginas, url } = useBusqueda()
 
   return (
-    <section className='peliculas'>
-      <h1 className='titulo'>Resultados para : {titulo} </h1>
-
-      <div className='contenedor'>
-        <Filtros />
-        <div className='peliculas_lista'>
-          <ListaDePeliculas peliculas={peliculas} />
-        </div>
-      </div>
-      <Paginacion />
-    </section>
+    <StyledPage
+      paginas={paginas}
+      peliculas={peliculas}
+      titulo={titulo}
+      url={url}
+    />
   )
 }
