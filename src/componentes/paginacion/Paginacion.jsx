@@ -1,4 +1,3 @@
-import './estilos.css'
 import { Link } from 'react-router-dom'
 
 export function Paginacion({ paginas, url }) {
@@ -8,12 +7,13 @@ export function Paginacion({ paginas, url }) {
   }
 
   return (
-    <div className='paginacion'>
-      <Link to={`${url}/page/${obgPagina.paginaActual - 1}`}>
-        Pagina Anterior
+    <div className='btn-group w-full flex justify-center py-4'>
+      <Link className='btn' to={`${url}/page/${obgPagina.paginaActual - 1}`}>
+        «
       </Link>
-      <Link to={`${url}/page/${obgPagina.paginaActual + 1}`}>
-        Siguiente Pagina
+      <button className='btn'>Pagina {obgPagina.paginaActual}</button>
+      <Link className='btn' to={`${url}/page/${obgPagina.paginaActual + 1}`}>
+        »
       </Link>
     </div>
   )
