@@ -1,17 +1,15 @@
-.seccion_peliculas {
-  margin: 0 auto;
-  max-width: 1200px;
-  padding: 20px 0;
-  padding-bottom: 80px;
+#scroll::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+  background-color: #343434;
+  border-radius: 10px;
 }
 
-.lista_peliculas {
-  display: flex;
-  gap: 10px;
-  overflow-x: scroll;
-  margin: 10px 0;
+#scroll::-webkit-scrollbar {
+  width: 10px;
 }
 
-.lista_imagen {
-  width: 200px;
+#scroll::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: #fff;
+  background-image: -webkit-linear-gradient(top, #114abb, #10609d);
 }

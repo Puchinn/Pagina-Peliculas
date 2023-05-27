@@ -7,16 +7,10 @@ import { useIdiomaContext } from "../../../hooks/useIdiomaContext";
 export function usePeliculasIniciales() {
   const [tendencias, setTendencias] = useState([])
   const [populares, setPopulares] = useState([])
+  const [clave, setClave] = useState('day')
   const { idioma } = useIdiomaContext()
 
   useEffect(() => {
-
-    getTrendingMovies({ lang: idioma })
-      .then(res => {
-        const nuevasTendencias = peliculasMapeadas({ originalMovies: res.results })
-        setTendencias(nuevasTendencias)
-      })
-
     getMoviesByCategory({ category: 'popular', lang: idioma })
       .then(res => {
         const peliculasPopulares = peliculasMapeadas({ originalMovies: res.results })
@@ -25,14 +19,18 @@ export function usePeliculasIniciales() {
 
   }, [idioma])
 
-  const updateTrendingMovies = (evento) => {
-    getTrendingMovies({ date: evento.target.value, lang: idioma })
+  useEffect(() => {
+    getTrendingMovies({ lang: idioma, date: clave })
       .then(res => {
         const nuevasTendencias = peliculasMapeadas({ originalMovies: res.results })
         setTendencias(nuevasTendencias)
       })
+  }, [clave, idioma])
+
+  const updateTrendingMovies = (evento) => {
+    setClave(evento.target.value)
   }
 
-  return { tendencias, populares, updateTrendingMovies }
+  return { tendencias, populares, updateTrendingMovies, clave }
 
 }

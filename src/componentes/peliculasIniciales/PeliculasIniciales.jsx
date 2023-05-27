@@ -4,7 +4,7 @@ import { usePeliculasIniciales } from './hooks/usePeliculasIniciales'
 import './estilos.css'
 
 export function PeliculasIniciales() {
-  const { populares, tendencias, updateTrendingMovies } =
+  const { populares, tendencias, updateTrendingMovies, clave } =
     usePeliculasIniciales()
 
   return (
@@ -12,6 +12,7 @@ export function PeliculasIniciales() {
       <Tendencias
         pelisTendencias={tendencias}
         updateFunction={updateTrendingMovies}
+        clave={clave}
       />
       <Populares peliculasPopulares={populares} />
     </>
