@@ -14,7 +14,7 @@ export function GaleriaImagenes() {
   return (
     <section className='relative bg-black py-6'>
       <div className='px-4 py-4 max-w-7xl mx-auto'>
-        <Carousel
+        {/* <Carousel
           hideArrow={true}
           showDots={true}
           loop={true}
@@ -31,7 +31,7 @@ export function GaleriaImagenes() {
               />
             </Carousel.Item>
           ))}
-        </Carousel>
+        </Carousel> */}
       </div>
     </section>
   )
