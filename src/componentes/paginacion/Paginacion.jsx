@@ -6,13 +6,23 @@ export function Paginacion({ paginas, url }) {
     paginasTotales: 1,
   }
 
+  const backLink = `${url}/page/${
+    obgPagina.paginaActual - 1 === 0 ? 1 : obgPagina.paginaActual - 1
+  }`
+
+  const nextLink = `${url}/page/${
+    obgPagina.paginaActual + 1 > obgPagina.paginasTotales
+      ? obgPagina.paginasTotales
+      : obgPagina.paginaActual + 1
+  }`
+
   return (
     <div className='btn-group w-full flex justify-center py-4'>
-      <Link className='btn' to={`${url}/page/${obgPagina.paginaActual - 1}`}>
+      <Link className='btn' to={backLink}>
         «
       </Link>
       <button className='btn'>Pagina {obgPagina.paginaActual}</button>
-      <Link className='btn' to={`${url}/page/${obgPagina.paginaActual + 1}`}>
+      <Link className='btn' to={nextLink}>
         »
       </Link>
     </div>
