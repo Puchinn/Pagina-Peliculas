@@ -7,7 +7,7 @@ import { Inicio } from './paginas/Inicio.jsx'
 import { PaginaTendencias } from './paginas/paginasDePeliculas/tendencias/PaginaTendencias'
 import { PaginaGeneros } from './paginas/paginasDePeliculas/generos/PaginaGeneros.jsx'
 import { Peliculas } from './paginas/paginasDePeliculas/peliculasPorCategoria/Peliculas'
-import { PeliculaDetalles } from './componentes/pelicula/PeliculaDetalles.jsx'
+import { PeliculaDetalles } from './paginas/detallesPeliculas/PeliculaDetalles.jsx'
 import { ResultadoBusqueda } from './paginas/resultadoBusqueda/ResultadoBusqueda.jsx'
 
 const router = createBrowserRouter([
