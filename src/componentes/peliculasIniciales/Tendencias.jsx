@@ -1,10 +1,15 @@
 import { Link } from 'react-router-dom'
 import { PeliculaCard } from '../pelicula/PeliculaCard'
+import AliceCarousel from 'react-alice-carousel'
+import 'react-alice-carousel/lib/alice-carousel.css'
 
 export function Tendencias({ pelisTendencias, updateFunction, clave }) {
   const dia = clave === 'day' && 'tab-active'
   const semana = clave === 'week' && 'tab-active'
 
+  const pelis = pelisTendencias?.map((peli) => (
+    <PeliculaCard key={peli.id} objPelicula={peli} />
+  ))
   return (
     <section className='max-w-6xl mx-auto py-5'>
       <h2 className='text-3xl my-3 text-violet-400 font-semibold'>
@@ -27,14 +32,15 @@ export function Tendencias({ pelisTendencias, updateFunction, clave }) {
         </button>
       </div>
       <div className='p-8 bg-neutral rounded-box rounded-tl-none'>
-        <ul id='scroll' className='w-full overflow-x-auto flex space-x-3 pb-5'>
-          {pelisTendencias?.map((peli) => (
-            <div key={peli.id} className='carousel-item'>
-              <PeliculaCard objPelicula={peli} />
-            </div>
-          ))}
-        </ul>
-        <button className='btn mt-5 bg-base-200 text-white'>
+        <AliceCarousel
+          autoWidth={true}
+          autoPlay={true}
+          items={pelis}
+          infinite={true}
+          autoPlayInterval={1300}
+          disableButtonsControls={true}
+        ></AliceCarousel>
+        <button className='btn mt-3 bg-base-200 text-white'>
           <Link to={'/peliculas/tendencias/del_dia'}>Mas Peliculas</Link>
         </button>
       </div>
