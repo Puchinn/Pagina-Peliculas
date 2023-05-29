@@ -1,7 +1,6 @@
 import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { getImages } from '../../../servicios/getImages'
-import Carousel from 'better-react-carousel'
 
 export function GaleriaImagenes() {
   const { peliId: id } = useParams()
