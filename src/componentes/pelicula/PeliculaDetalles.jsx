@@ -1,18 +1,13 @@
 import { useDetalles } from './useDetalles'
+import { Estrellas } from './Estrellas'
+import { FondoDetalles } from './FondoDetalles'
 
 export function PeliculaDetalles() {
   const { detalles, listaGeneros } = useDetalles()
 
   return (
     <section className='relative'>
-      <div
-        className=' absolute inset-0 bg-cover min-h-screen'
-        style={{
-          backgroundImage: `url(${detalles.fondoImg})`,
-        }}
-      >
-        <div className='absolute inset-0 bg-black bg-opacity-[93%]'></div>
-      </div>
+      <FondoDetalles img={detalles.fondoImg} />
       <div className='detalles px-3 gap-x-7 z-10 relative max-w-7xl mx-auto flex py-28'>
         <img
           className='w-[350px] rounded-box'
@@ -26,8 +21,9 @@ export function PeliculaDetalles() {
             {detalles.lanzamiento} -{' '}
             <span className='font-bold'>{listaGeneros}</span>
           </h2>
+          <Estrellas calificacion={detalles.calificacion} />
           <div>
-            <h2 className='text-xl font-semibold pb-3'>Resumen</h2>
+            <h2 className='text-xl font-semibold pb-2'>Resumen</h2>
             <p className='font-semibold'> {detalles.descripcion} </p>
           </div>
         </div>
