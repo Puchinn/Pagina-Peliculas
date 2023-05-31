@@ -10,10 +10,8 @@ export function Populares({ peliculasPopulares }) {
 
   return (
     <section className='max-w-6xl mx-auto py-5'>
-      <h2 className='text-3xl my-3 text-violet-400 font-semibold'>
-        Lo mas Popular
-      </h2>
-      <div className='p-8 bg-neutral rounded-box'>
+      <h2 className='text-3xl px-3 my-3 font-semibold'>Lo mas Popular</h2>
+      <div className='p-3 sm:p-8 bg-neutral sm:rounded-box'>
         <AliceCarousel
           autoWidth={true}
           autoPlay={true}

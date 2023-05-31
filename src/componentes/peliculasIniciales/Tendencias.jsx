@@ -12,9 +12,7 @@ export function Tendencias({ pelisTendencias, updateFunction, clave }) {
   ))
   return (
     <section className='max-w-6xl mx-auto py-5'>
-      <h2 className='text-3xl my-3 text-violet-400 font-semibold'>
-        Tendencias
-      </h2>
+      <h2 className='text-3xl px-3 my-3 font-semibold'>Tendencias</h2>
       <div className='tabs '>
         <button
           className={`tab tab-lg tab-lifted ${dia}`}
@@ -31,7 +29,7 @@ export function Tendencias({ pelisTendencias, updateFunction, clave }) {
           De La Semana
         </button>
       </div>
-      <div className='p-8 bg-neutral rounded-box rounded-tl-none'>
+      <div className='p-3 sm:p-8 bg-neutral sm:rounded-box rounded-tl-none'>
         <AliceCarousel
           autoWidth={true}
           autoPlay={true}
