@@ -10,14 +10,16 @@ export function PeliculaDetalles() {
     <>
       <section className='relative '>
         <FondoDetalles img={detalles.fondoImg} />
-        <div className='detalles px-3 gap-x-7 z-10 relative max-w-7xl mx-auto flex py-28'>
+        <div className='detalles lg:flex px-3 gap-x-7 z-10 relative max-w-7xl mx-auto py-10  lg:py-28'>
           <img
-            className='w-[350px] object-cover rounded-box'
+            className='mx-auto my-3 lg:my-0 lg:w-[350px] w-[200px] object-cover rounded-box'
             src={detalles.posterImg}
             alt={detalles.titulo}
           />
           <div className='space-y-2'>
-            <h1 className='text-5xl font-bold'>{detalles.titulo}</h1>
+            <h1 className='text-4xl sm:text-5xl font-bold'>
+              {detalles.titulo}
+            </h1>
             <h2 className='text-xl font-semibold italic'>
               {detalles.subTitulo}
             </h2>
