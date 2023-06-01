@@ -6,7 +6,7 @@ export function BuscarPeliculas() {
       <div className='hero-content text-center'>
         <div className='max-w-lg'>
           <h1 className='text-4xl sm:text-5xl font-bold'>Buscar Peliculas</h1>
-          <p className='py-4 text-sm'>SOLO PELICULAS 🤙🏾</p>
+          <p className='py-4 text-sm italic'>SOLO PELICULAS 🤙🏾</p>
           <Form action='/busqueda' className='flex gap-x-2'>
             <input
               autoComplete='off'
