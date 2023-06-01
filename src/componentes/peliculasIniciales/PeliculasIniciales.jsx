@@ -1,7 +1,6 @@
-import { Populares } from './Populares'
-import { Tendencias } from './Tendencias'
 import { usePeliculasIniciales } from './hooks/usePeliculasIniciales'
-import './estilos.css'
+import { Carrusel } from './componentes/Carrusel'
+import { Tabs } from './componentes/Tabs'
 
 export function PeliculasIniciales() {
   const { populares, tendencias, updateTrendingMovies, clave } =
@@ -9,12 +8,18 @@ export function PeliculasIniciales() {
 
   return (
     <>
-      <Tendencias
-        pelisTendencias={tendencias}
-        updateFunction={updateTrendingMovies}
-        clave={clave}
+      <Carrusel
+        peliculas={tendencias}
+        titulo={'Tendencias'}
+        urlLink={'/peliculas/tendencias/del_dia'}
+      >
+        <Tabs palabraActiva={clave} updateFunction={updateTrendingMovies} />
+      </Carrusel>
+      <Carrusel
+        peliculas={populares}
+        titulo={'Lo Más Popular'}
+        urlLink={'/peliculas'}
       />
-      <Populares peliculasPopulares={populares} />
     </>
   )
 }
