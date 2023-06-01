@@ -6,7 +6,6 @@ export function Header() {
     <header className='navbar bg-base-300 py-3'>
       <nav className='max-w-5xl mx-auto w-full'>
         <ul className='flex-1 menu menu-horizontal px-1 gap-x-2'>
-          <li className='btn btn-ghost text-2xl hidden sm:block'>LOGO</li>
           <li>
             <Link to={'/'}>Inicio</Link>
           </li>
