@@ -9,11 +9,13 @@ import { PaginaGeneros } from './paginas/paginasDePeliculas/generos/PaginaGenero
 import { Peliculas } from './paginas/paginasDePeliculas/peliculasPorCategoria/Peliculas'
 import { PeliculaDetalles } from './paginas/detallesPeliculas/PeliculaDetalles.jsx'
 import { ResultadoBusqueda } from './paginas/resultadoBusqueda/ResultadoBusqueda.jsx'
+import { NotFound } from './paginas/not-found/NotFound'
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
+    errorElement: <NotFound />,
     children: [
       {
         index: true,
