@@ -5,7 +5,9 @@ export function ListaDePeliculas({ peliculas }) {
   return (
     <ul className='lista_de_peliculas'>
       {peliculas?.map((peli) => (
-        <PeliculaCard key={peli.id} objPelicula={peli} />
+        <li key={peli.id}>
+          <PeliculaCard objPelicula={peli} />
+        </li>
       ))}
     </ul>
   )
