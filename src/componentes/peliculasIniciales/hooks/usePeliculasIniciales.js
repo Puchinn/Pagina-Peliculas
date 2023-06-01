@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
-import { getTrendingMovies } from "../../../servicios/getTrendingMovies";
-import { getMoviesByCategory } from "../../../servicios/getMoviesByCategory";
-import { peliculasMapeadas } from "../../../adaptadores/mappedMovies";
-import { useIdiomaContext } from "../../../hooks/useIdiomaContext";
+import { useState, useEffect } from "react"
+import { getTrendingMovies } from "../../../servicios/getTrendingMovies"
+import { getMoviesByCategory } from "../../../servicios/getMoviesByCategory"
+import { peliculasMapeadas } from "../../../adaptadores/mappedMovies"
+import { useIdiomaContext } from "../../../hooks/useIdiomaContext"
 
 export function usePeliculasIniciales() {
   const [tendencias, setTendencias] = useState([])
