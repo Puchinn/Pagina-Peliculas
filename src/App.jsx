@@ -1,4 +1,3 @@
-import './App.css'
 import { Header } from './componentes/header/Header'
 import { IdiomaProvider } from './contexto/IdiomaProvider'
 import { Outlet } from 'react-router-dom'
@@ -7,7 +6,9 @@ function App() {
   return (
     <IdiomaProvider>
       <Header />
-      <Outlet />
+      <main>
+        <Outlet />
+      </main>
     </IdiomaProvider>
   )
 }
