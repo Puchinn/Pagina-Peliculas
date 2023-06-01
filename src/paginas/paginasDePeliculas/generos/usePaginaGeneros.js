@@ -17,6 +17,7 @@ export function usePaginaGeneros() {
   const url = '/peliculas/generos/' + id
 
   useEffect(() => {
+    window.scrollTo(0, 0)
     getMoviesByGeners({ gener: findGenero?.id, lang: idioma, page: page })
       .then(res => {
         const nuevasPelis = peliculasMapeadas({ originalMovies: res.results })

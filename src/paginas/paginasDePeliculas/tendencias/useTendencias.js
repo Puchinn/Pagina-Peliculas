@@ -23,6 +23,7 @@ export function useTendencias() {
   const paginas = useRef()
 
   useEffect(() => {
+    window.scrollTo(0, 0)
     getTrendingMovies({ date: VALORES_TENDENCIAS[categoria], lang: idioma, page: page })
       .then(res => {
         const nuevasPelis = peliculasMapeadas({ originalMovies: res.results })

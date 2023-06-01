@@ -28,6 +28,7 @@ export function usePeliculas() {
   const paginas = useRef()
 
   useEffect(() => {
+    window.scrollTo(0, 0)
     getMoviesByCategory({ category: VALORES_CATEGORIAS[categoria], lang: idioma, page: page })
       .then(res => {
         const nuevasPelis = peliculasMapeadas({ originalMovies: res.results })
