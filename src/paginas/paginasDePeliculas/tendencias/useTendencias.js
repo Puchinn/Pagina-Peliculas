@@ -21,16 +21,19 @@ export function useTendencias() {
   const [peliculas, setPeliculas] = useState([])
   const url = '/peliculas/tendencias/' + categoria
   const paginas = useRef()
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     window.scrollTo(0, 0)
+    setLoading(true)
     getTrendingMovies({ date: VALORES_TENDENCIAS[categoria], lang: idioma, page: page })
       .then(res => {
         const nuevasPelis = peliculasMapeadas({ originalMovies: res.results })
         paginas.current = paginasAdaptadas({ pagesObject: res })
         setPeliculas(nuevasPelis)
+        setLoading(false)
       })
   }, [idioma, categoria, page])
 
-  return { titulo: TITULOS_TENDENDIAS[categoria], peliculas, paginas: paginas.current, url }
+  return { titulo: TITULOS_TENDENDIAS[categoria], peliculas, paginas: paginas.current, url, isLoading: loading }
 }

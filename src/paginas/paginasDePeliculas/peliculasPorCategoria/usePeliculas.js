@@ -26,16 +26,19 @@ export function usePeliculas() {
   const { idioma } = useIdiomaContext()
   const titulo = TITULOS_CATEGORIAS[categoria] || 'Populares'
   const paginas = useRef()
+  const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
     window.scrollTo(0, 0)
+    setIsLoading(true)
     getMoviesByCategory({ category: VALORES_CATEGORIAS[categoria], lang: idioma, page: page })
       .then(res => {
         const nuevasPelis = peliculasMapeadas({ originalMovies: res.results })
         paginas.current = paginasAdaptadas({ pagesObject: res })
         setPeliculas(nuevasPelis)
+        setIsLoading(false)
       })
   }, [categoria, idioma, page])
 
-  return { titulo, peliculas, paginas: paginas.current, url }
+  return { titulo, peliculas, isLoading, paginas: paginas.current, url }
 }

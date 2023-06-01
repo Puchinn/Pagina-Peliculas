@@ -15,16 +15,19 @@ export function usePaginaGeneros() {
   const titulo = findGenero?.name ?? 'Sin generos'
   const paginas = useRef()
   const url = '/peliculas/generos/' + id
+  const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
     window.scrollTo(0, 0)
+    setIsLoading(true)
     getMoviesByGeners({ gener: findGenero?.id, lang: idioma, page: page })
       .then(res => {
         const nuevasPelis = peliculasMapeadas({ originalMovies: res.results })
         paginas.current = paginasAdaptadas({ pagesObject: res })
         setPeliculas(nuevasPelis)
+        setIsLoading(false)
       })
   }, [findGenero?.id, idioma, page])
 
-  return { titulo, peliculas, paginas: paginas.current, url }
+  return { titulo, peliculas, isLoading, paginas: paginas.current, url }
 }
