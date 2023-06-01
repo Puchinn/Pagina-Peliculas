@@ -1,12 +1,21 @@
 import { ListaDeCategorias } from './listaCategorias/ListaDeCategorias'
 import { ListaTendencias } from './listaTendencias/ListaTendencias'
 import { ListaDeGeneros } from './listaDeGeneros/ListaDeGeneros'
-import { Buscar } from './../buscarPeliculas/Buscar'
+import { Form } from 'react-router-dom'
 
 export function Filtros() {
   return (
     <div className='bg-base-300 rounded-md p-3 w-[30%] hidden lg:block'>
-      <Buscar />
+      <Form action='/busqueda' className='flex flex-col gap-y-3 my-2'>
+        <input
+          placeholder='Buscar pelicula'
+          className='input text-lg'
+          name='query'
+          type='text'
+          required
+        />
+        <button className='btn'>Buscar</button>
+      </Form>
       <ListaDeCategorias />
       <ListaTendencias />
       <ListaDeGeneros />
