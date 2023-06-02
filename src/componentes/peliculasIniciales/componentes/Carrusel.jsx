@@ -2,8 +2,17 @@ import { PeliculaCard } from '../../pelicula/PeliculaCard'
 import AliceCarousel from 'react-alice-carousel'
 import { Link } from 'react-router-dom'
 import 'react-alice-carousel/lib/alice-carousel.css'
+import { Waveform } from '@uiball/loaders'
 
-export function Carrusel({ peliculas, urlLink, titulo, children }) {
+function Loader() {
+  return (
+    <div className='min-h-[280px] flex justify-center items-center'>
+      <Waveform size={40} lineWeight={3.5} speed={1} color='white' />
+    </div>
+  )
+}
+
+export function Carrusel({ peliculas, urlLink, titulo, children, isLoading }) {
   const peliItems = peliculas?.map((peli) => (
     <PeliculaCard key={peli.id} objPelicula={peli} />
   ))
@@ -13,6 +22,7 @@ export function Carrusel({ peliculas, urlLink, titulo, children }) {
       <h2 className='text-2xl sm:text-3xl px-3 my-3 font-semibold'>{titulo}</h2>
       {children}
       <div className='p-3 sm:p-8 bg-neutral sm:rounded-sm'>
+        {isLoading && <Loader />}
         <AliceCarousel
           autoWidth={true}
           autoPlay={true}
