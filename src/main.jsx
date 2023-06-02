@@ -3,20 +3,15 @@ import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import Inicio from './paginas/Inicio'
+import Peliculas from './paginas/paginasDePeliculas/peliculasPorCategoria/Peliculas'
+import PeliculaDetalles from './paginas/detallesPeliculas/PeliculaDetalles'
 
-const Inicio = React.lazy(() => import('./paginas/Inicio'))
-
-const Peliculas = React.lazy(() =>
-  import('./paginas/paginasDePeliculas/peliculasPorCategoria/Peliculas')
-)
 const PaginaTendencias = React.lazy(() =>
   import('./paginas/paginasDePeliculas/tendencias/PaginaTendencias')
 )
 const PaginaGeneros = React.lazy(() =>
   import('./paginas/paginasDePeliculas/generos/PaginaGeneros')
-)
-const PeliculaDetalles = React.lazy(() =>
-  import('./paginas/detallesPeliculas/PeliculaDetalles')
 )
 const ResultadoBusqueda = React.lazy(() =>
   import('./paginas/resultadoBusqueda/ResultadoBusqueda')
