@@ -18,7 +18,7 @@ export default function PeliculaDetalles() {
         <div className='lg:flex px-3 gap-x-7 z-10 relative max-w-7xl mx-auto py-10 lg:py-28'>
           <div className='lg:min-w-[350px] w-[200px] min-h-[300px] lg:min-h-[525px] my-3 lg:my-0 rounded-box bg-base-200 mx-auto lg:mx-0'>
             <img
-              className='mx-auto h-full w-full object-cover rounded-box '
+              className='mx-auto min-h-[300px] lg:min-h-[525px] w-full object-cover rounded-box '
               src={detalles.posterImg}
               alt={detalles.titulo}
               width={200}
