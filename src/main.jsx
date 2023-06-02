@@ -3,13 +3,25 @@ import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import { Inicio } from './paginas/Inicio.jsx'
-import { PaginaTendencias } from './paginas/paginasDePeliculas/tendencias/PaginaTendencias'
-import { PaginaGeneros } from './paginas/paginasDePeliculas/generos/PaginaGeneros.jsx'
-import { Peliculas } from './paginas/paginasDePeliculas/peliculasPorCategoria/Peliculas'
-import { PeliculaDetalles } from './paginas/detallesPeliculas/PeliculaDetalles.jsx'
-import { ResultadoBusqueda } from './paginas/resultadoBusqueda/ResultadoBusqueda.jsx'
-import { NotFound } from './paginas/not-found/NotFound'
+
+const Inicio = React.lazy(() => import('./paginas/Inicio'))
+
+const Peliculas = React.lazy(() =>
+  import('./paginas/paginasDePeliculas/peliculasPorCategoria/Peliculas')
+)
+const PaginaTendencias = React.lazy(() =>
+  import('./paginas/paginasDePeliculas/tendencias/PaginaTendencias')
+)
+const PaginaGeneros = React.lazy(() =>
+  import('./paginas/paginasDePeliculas/generos/PaginaGeneros')
+)
+const PeliculaDetalles = React.lazy(() =>
+  import('./paginas/detallesPeliculas/PeliculaDetalles')
+)
+const ResultadoBusqueda = React.lazy(() =>
+  import('./paginas/resultadoBusqueda/ResultadoBusqueda')
+)
+const NotFound = React.lazy(() => import('./paginas/not-found/NotFound'))
 
 const router = createBrowserRouter([
   {
