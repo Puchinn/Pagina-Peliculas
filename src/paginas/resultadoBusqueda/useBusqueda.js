@@ -5,25 +5,27 @@ import { peliculasMapeadas } from '../../adaptadores/mappedMovies'
 import { useIdiomaContext } from '../../hooks/useIdiomaContext'
 import { paginasAdaptadas } from './../../adaptadores/adaptedPages';
 
-
 export function useBusqueda() {
   const [parametros] = useSearchParams()
   const query = parametros.get('query').split('/')
+  const queryParam = query[0]
   const [peliculas, setPeliculas] = useState([])
+  const [isLoading, setIsLoading] = useState(false)
   const { idioma } = useIdiomaContext()
   const paginas = useRef()
   const url = '/busqueda?query=' + query[0]
   const page = query[2]
 
   useEffect(() => {
-    getMoviesBySearch({ query: query[0], lang: idioma, page: page || 1 })
+    setIsLoading(true)
+    getMoviesBySearch({ query: queryParam, lang: idioma, page: page || 1 })
       .then(res => {
         const nuevasPelis = peliculasMapeadas({ originalMovies: res.results })
         paginas.current = paginasAdaptadas({ pagesObject: res })
         setPeliculas(nuevasPelis)
+        setIsLoading(false)
       })
-  }, [query, idioma, page])
+  }, [queryParam, idioma, page,])
 
-  return { peliculas, titulo: query[0], paginas: paginas.current, url }
-
+  return { peliculas, titulo: queryParam, paginas: paginas.current, url, isLoading }
 }
