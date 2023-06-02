@@ -2,7 +2,7 @@ import { usePaginaGeneros } from './usePaginaGeneros'
 import { StyledPage } from '../styledPage/StyledPage'
 import { Loading } from './../../../componentes/loading/Loading'
 
-export function PaginaGeneros() {
+export default function PaginaGeneros() {
   const { titulo, peliculas, isLoading, paginas, url } = usePaginaGeneros()
   return (
     <>

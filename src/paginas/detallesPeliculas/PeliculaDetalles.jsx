@@ -4,7 +4,7 @@ import { FondoDetalles } from './componentes/FondoDetalles'
 import { GaleriaImagenes } from './componentes/GaleriaImagenes'
 import { Loader } from './componentes/Loader'
 
-export function PeliculaDetalles() {
+export default function PeliculaDetalles() {
   const { detalles, listaGeneros, hora, fecha, isLoading } = useDetalles()
 
   if (isLoading) {

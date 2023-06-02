@@ -2,7 +2,7 @@ import { useTendencias } from './useTendencias'
 import { StyledPage } from './../styledPage/StyledPage'
 import { Loading } from './../../../componentes/loading/Loading'
 
-export function PaginaTendencias() {
+export default function PaginaTendencias() {
   const { titulo, peliculas, paginas, url, isLoading } = useTendencias()
 
   return (
