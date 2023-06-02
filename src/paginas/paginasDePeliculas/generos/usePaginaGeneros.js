@@ -5,6 +5,7 @@ import { useEffect, useState, useRef } from 'react'
 import { peliculasMapeadas } from '../../../adaptadores/mappedMovies'
 import { useIdiomaContext } from '../../../hooks/useIdiomaContext'
 import { paginasAdaptadas } from '../../../adaptadores/adaptedPages'
+import { useLocation } from 'react-router-dom'
 
 export function usePaginaGeneros() {
   const { idioma } = useIdiomaContext()
@@ -16,18 +17,22 @@ export function usePaginaGeneros() {
   const paginas = useRef()
   const url = '/peliculas/generos/' + id
   const [isLoading, setIsLoading] = useState(false)
+  const { pathname } = useLocation()
 
   useEffect(() => {
+    const controller = new AbortController()
     window.scrollTo(0, 0)
     setIsLoading(true)
-    getMoviesByGeners({ gener: findGenero?.id, lang: idioma, page: page })
+    getMoviesByGeners({ gener: findGenero?.id, lang: idioma, page: page }, controller)
       .then(res => {
         const nuevasPelis = peliculasMapeadas({ originalMovies: res.results })
         paginas.current = paginasAdaptadas({ pagesObject: res })
         setPeliculas(nuevasPelis)
         setIsLoading(false)
       })
-  }, [findGenero?.id, idioma, page])
+
+    return () => controller.abort()
+  }, [findGenero?.id, idioma, page, pathname])
 
   return { titulo, peliculas, isLoading, paginas: paginas.current, url }
 }

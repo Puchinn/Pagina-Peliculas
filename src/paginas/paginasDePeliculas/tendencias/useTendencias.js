@@ -3,7 +3,8 @@ import { getTrendingMovies } from "../../../servicios/getTrendingMovies"
 import { useEffect, useRef, useState } from "react";
 import { useIdiomaContext } from "../../../hooks/useIdiomaContext"
 import { peliculasMapeadas } from "../../../adaptadores/mappedMovies"
-import { paginasAdaptadas } from "../../../adaptadores/adaptedPages";
+import { paginasAdaptadas } from "../../../adaptadores/adaptedPages"
+import { useLocation } from "react-router-dom";
 
 const TITULOS_TENDENDIAS = {
   del_dia: 'Del dia',
@@ -22,18 +23,22 @@ export function useTendencias() {
   const url = '/peliculas/tendencias/' + categoria
   const paginas = useRef()
   const [loading, setLoading] = useState(false)
+  const { pathname } = useLocation()
 
   useEffect(() => {
+    const controller = new AbortController()
     window.scrollTo(0, 0)
     setLoading(true)
-    getTrendingMovies({ date: VALORES_TENDENCIAS[categoria], lang: idioma, page: page })
+    getTrendingMovies({ date: VALORES_TENDENCIAS[categoria], lang: idioma, page: page }, controller)
       .then(res => {
         const nuevasPelis = peliculasMapeadas({ originalMovies: res.results })
         paginas.current = paginasAdaptadas({ pagesObject: res })
         setPeliculas(nuevasPelis)
         setLoading(false)
       })
-  }, [idioma, categoria, page])
+
+    return () => controller.abort()
+  }, [idioma, categoria, page, pathname])
 
   return { titulo: TITULOS_TENDENDIAS[categoria], peliculas, paginas: paginas.current, url, isLoading: loading }
 }

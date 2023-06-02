@@ -7,7 +7,7 @@ import useSWR from 'swr'
 export function useDetalles() {
   const { peliId } = useParams()
   const { idioma } = useIdiomaContext()
-  const { data, isLoading } = useSWR([peliId, idioma], () => (
+  const { data, isLoading } = useSWR(`/pelicula/${peliId}`, () => (
     getMovieDetails({ id: peliId, lang: idioma })
   ))
 

@@ -3,10 +3,12 @@ import { useEffect, useState } from 'react'
 import { getImages } from '../../../servicios/getImages'
 import AliceCarousel from 'react-alice-carousel'
 import 'react-alice-carousel/lib/alice-carousel.css'
+import { useLocation } from 'react-router-dom'
 
 export function GaleriaImagenes() {
   const { peliId: id } = useParams()
   const [imagenes, setImagenes] = useState([])
+  const { pathname } = useLocation()
 
   const items = imagenes
     ?.slice(0, 10)
@@ -21,8 +23,11 @@ export function GaleriaImagenes() {
     ))
 
   useEffect(() => {
-    getImages({ id: id }).then((res) => setImagenes(res))
-  }, [id])
+    const controller = new AbortController()
+    getImages({ id: id }, controller).then((res) => setImagenes(res))
+
+    return () => controller.abort()
+  }, [id, pathname])
 
   return (
     <section className='relative bg-black py-6'>
