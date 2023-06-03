@@ -3,9 +3,11 @@ import { Estrellas } from './componentes/Estrellas'
 import { FondoDetalles } from './componentes/FondoDetalles'
 import { GaleriaImagenes } from './componentes/GaleriaImagenes'
 import { Loader } from './componentes/Loader'
+import { Creditos } from './componentes/Creditos'
 
 export default function PeliculaDetalles() {
-  const { detalles, listaGeneros, hora, fecha, isLoading } = useDetalles()
+  const { detalles, listaGeneros, hora, fecha, isLoading, equipo } =
+    useDetalles()
 
   if (isLoading) {
     return <Loader />
@@ -16,7 +18,7 @@ export default function PeliculaDetalles() {
       <section className='relative '>
         <FondoDetalles img={detalles.fondoImg} />
         <div className='lg:flex px-3 gap-x-7 z-10 relative max-w-7xl mx-auto py-10 lg:py-28'>
-          <div className='lg:min-w-[350px] w-[200px] min-h-[300px] lg:min-h-[525px] my-3 lg:my-0 rounded-box bg-base-200 mx-auto lg:mx-0'>
+          <div className='lg:min-w-[350px] max-h-[525px] w-[200px] min-h-[300px] lg:min-h-[525px] my-3 lg:my-0 rounded-box bg-base-200 mx-auto lg:mx-0'>
             <img
               className='mx-auto min-h-[300px] lg:min-h-[525px] w-full object-cover rounded-box '
               src={detalles.posterImg}
@@ -40,6 +42,7 @@ export default function PeliculaDetalles() {
               <h2 className='text-xl font-semibold pb-2 pt-3'>Resumen</h2>
               <p className='font-semibold'> {detalles.descripcion} </p>
             </div>
+            <Creditos equipo={equipo} />
           </div>
         </div>
       </section>
