@@ -2,7 +2,7 @@ export function Creditos({ equipo }) {
   return (
     <div className='relative'>
       <h2 className='font-semibold text-xl py-2'>Actores Principales:</h2>
-      <div className='flex flex-wrap gap-2 max-w-7xl mx-auto'>
+      <div className='flex flex-wrap gap-2 max-w-7xl justify-center xl:justify-normal mx-auto'>
         {equipo.map((ele) => (
           <div key={ele.papel}>
             <img

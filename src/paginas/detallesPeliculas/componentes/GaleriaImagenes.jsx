@@ -16,7 +16,7 @@ export function GaleriaImagenes() {
       <img
         key={img.iso}
         className='rounded-2xl py-2 object-cover px-3'
-        width={450}
+        width={400}
         src={img.url}
         data-value={index}
       />
