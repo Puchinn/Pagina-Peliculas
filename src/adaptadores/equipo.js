@@ -4,7 +4,7 @@ export function equipo(objeto) {
     {
       nombre: ele.original_name,
       papel: ele.character,
-      foto: 'https://image.tmdb.org/t/p/w500' + ele.profile_path
+      foto: 'https://image.tmdb.org/t/p/w154' + ele.profile_path
     }
   ))
 }
