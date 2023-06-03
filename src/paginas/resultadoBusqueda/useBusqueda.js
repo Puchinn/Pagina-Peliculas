@@ -19,6 +19,7 @@ export function useBusqueda() {
   const { pathname } = useLocation()
 
   useEffect(() => {
+    window.scrollTo(0, 0)
     const controller = new AbortController()
     setIsLoading(true)
     getMoviesBySearch({ query: queryParam, lang: idioma, page: page || 1 }, controller)
