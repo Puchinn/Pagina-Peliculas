@@ -6,6 +6,7 @@ import useSWR from 'swr'
 import { useState, useEffect } from 'react'
 import { getCredits } from '../../servicios/getCredits'
 import { useLocation } from 'react-router-dom'
+import { getVideo } from '../../servicios/getVideo'
 
 export function useDetalles() {
   const { pathname } = useLocation()
@@ -16,12 +17,14 @@ export function useDetalles() {
   ))
 
   const [equipo, setEquipo] = useState([])
+  const [key, setKey] = useState('')
 
   useEffect(() => {
     const controller = new AbortController()
     getCredits({ movieId: peliId, lang: idioma }, controller)
       .then(res => setEquipo(res))
-
+    getVideo({ id: peliId, lang: idioma })
+      .then(res => setKey(res[0]))
     return () => controller.abort()
   }, [peliId, idioma, pathname])
 
@@ -31,5 +34,5 @@ export function useDetalles() {
   const hora = data && formatedHours({ minutos: data.duracion })
   const fecha = data && data.lanzamiento?.split('-').reverse().join('-')
 
-  return { detalles: data, listaGeneros, hora, fecha, isLoading, equipo }
+  return { detalles: data, listaGeneros, hora, fecha, isLoading, equipo, key }
 }

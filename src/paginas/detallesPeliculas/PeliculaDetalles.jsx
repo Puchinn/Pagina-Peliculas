@@ -4,9 +4,10 @@ import { FondoDetalles } from './componentes/FondoDetalles'
 import { GaleriaImagenes } from './componentes/GaleriaImagenes'
 import { Loader } from './componentes/Loader'
 import { Creditos } from './componentes/Creditos'
+import { Video } from './componentes/Video'
 
 export default function PeliculaDetalles() {
-  const { detalles, listaGeneros, hora, fecha, isLoading, equipo } =
+  const { detalles, listaGeneros, hora, fecha, isLoading, equipo, key } =
     useDetalles()
 
   if (isLoading) {
@@ -41,6 +42,9 @@ export default function PeliculaDetalles() {
             <div>
               <h2 className='text-xl font-semibold pb-2 pt-3'>Resumen</h2>
               <p className='font-semibold'> {detalles.descripcion} </p>
+            </div>
+            <div>
+              <Video idKey={key} />
             </div>
             <Creditos equipo={equipo} />
           </div>

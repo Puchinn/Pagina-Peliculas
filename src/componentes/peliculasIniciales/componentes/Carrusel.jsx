@@ -2,12 +2,11 @@ import { PeliculaCard } from '../../pelicula/PeliculaCard'
 import AliceCarousel from 'react-alice-carousel'
 import { Link } from 'react-router-dom'
 import 'react-alice-carousel/lib/alice-carousel.css'
-import { Waveform } from '@uiball/loaders'
 
 function Loader() {
   return (
     <div className='min-h-[280px] flex justify-center items-center'>
-      <Waveform size={40} lineWeight={3.5} speed={1} color='white' />
+      <span className='loading loading-bars loading-lg'></span>
     </div>
   )
 }
