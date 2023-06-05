@@ -20,6 +20,11 @@ export function useDetalles() {
   const [key, setKey] = useState('')
 
   useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
+    })
     const controller = new AbortController()
     getCredits({ movieId: peliId, lang: idioma }, controller)
       .then(res => setEquipo(res))
