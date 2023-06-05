@@ -2,6 +2,7 @@ import { Header } from './componentes/header/Header'
 import { IdiomaProvider } from './contexto/IdiomaProvider'
 import { Outlet } from 'react-router-dom'
 import { Suspense } from 'react'
+import { Footer } from './componentes/footer/Footer'
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
           <Outlet />
         </Suspense>
       </main>
+      <Footer />
     </IdiomaProvider>
   )
 }
