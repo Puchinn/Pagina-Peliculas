@@ -16,7 +16,7 @@ export function Video({ idKey }) {
               src={'https://www.youtube-nocookie.com/embed/' + idKey}
               title='YouTube video player'
               allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
-              allowfullscreen
+              allowFullScreen
             ></iframe>
             <div className='modal-action'>
               <button
