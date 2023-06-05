@@ -10,7 +10,7 @@ export function Video({ idKey }) {
 
       {isVisible && (
         <div className='fixed lg:mt-[90px] mx-auto z-[110] inset-0'>
-          <div className='modal-box min-h-[600px] mx-auto max-w-4xl w-full flex justify-center flex-col items-center'>
+          <div className='modal-box overflow-hidden min-h-[650px] mx-auto max-w-4xl w-full flex justify-center flex-col items-center'>
             <iframe
               className='w-full min-h-[520px]'
               src={'https://www.youtube-nocookie.com/embed/' + idKey}
@@ -19,13 +19,19 @@ export function Video({ idKey }) {
               allowFullScreen
             ></iframe>
             <div className='modal-action'>
-              <button
-                onClick={() => setIsVisible(false)}
-                htmlFor='my_modal_6'
-                className='btn'
-              >
-                Close!
-              </button>
+              <div className='flex flex-col items-center gap-y-2'>
+                <p className='font-semibold text-sm'>
+                  Si no se encuentra disponible el trailer en el idioma elejido,
+                  se colocara el trailer por oficial en Ingles
+                </p>
+                <button
+                  onClick={() => setIsVisible(false)}
+                  htmlFor='my_modal_6'
+                  className='btn'
+                >
+                  Close!
+                </button>
+              </div>
             </div>
           </div>
         </div>
