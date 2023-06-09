@@ -13,7 +13,7 @@ export function PeliculaDelDia() {
       }}
       className={`relative min-h-[75vh] bg-cover bg-center bg-no-repeat`}
     >
-      <div className='absolute inset-0 bg-gradient-to-b from-gray-900/40 via-gray-900/80 to-black'></div>
+      <div className='absolute inset-0 bg-gradient-to-b from-gray-900/50 via-gray-900/80 to-black'></div>
 
       <div className='relative mx-auto max-w-screen-xl px-4 py-32 lg:flex'>
         <div className='max-w-xl'>
