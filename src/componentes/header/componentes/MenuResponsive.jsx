@@ -1,11 +1,11 @@
-import { Svg } from './Svg'
+import { Icono } from '../../svgMenu/Icono'
 import { Link } from 'react-router-dom'
 
-export function ResponsiveMenu() {
+export function MenuResponsive() {
   return (
     <div className='dropdown w-full sm:hidden'>
       <label tabIndex={0} className='btn btn-ghost btn-circle'>
-        <Svg />
+        <Icono />
       </label>
       <ul
         tabIndex={0}
