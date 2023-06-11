@@ -1,6 +1,6 @@
 export function Loading() {
   return (
-    <div className='w-full flex bg-black bg-opacity-70 justify-center items-center h-screen absolute'>
+    <div className='h-screen w-full grid items-center justify-center bg-black'>
       <span className='loading loading-bars loading-lg'></span>
     </div>
   )
