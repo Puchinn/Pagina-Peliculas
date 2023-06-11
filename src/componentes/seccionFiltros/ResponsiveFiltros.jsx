@@ -1,22 +1,19 @@
 import { ListaDeCategorias } from './listaCategorias/ListaDeCategorias'
 import { ListaTendencias } from './listaTendencias/ListaTendencias'
 import { ListaDeGeneros } from './listaDeGeneros/ListaDeGeneros'
-import { ToggleMenu } from './../header/ToggleMenu'
+
 import { Form } from 'react-router-dom'
-import { useState } from 'react'
 
 export function ResponsiveFiltros() {
-  const [active, setActive] = useState(false)
-
   return (
-    <div className='py-2 px-2 bg-base-300 mb-4 rounded-md lg:hidden '>
-      <div className='gap-x-2 flex'>
-        <Form action='/busqueda' className='input-group'>
+    <div className='p-5 mb-4 rounded-md'>
+      <div className='gap-x-2 flex items-center justify-center'>
+        <Form action='/busqueda' className='input-group max-w-md'>
           <input
             name='query'
             type='text'
             placeholder='Search…'
-            className='input input-bordered w-full'
+            className='input bg-black w-full input-bordered '
           />
           <button className='btn btn-square'>
             <svg
@@ -35,15 +32,12 @@ export function ResponsiveFiltros() {
             </svg>
           </button>
         </Form>
-        <ToggleMenu value={active} setValue={setActive} />
-      </div>
-      {active && (
-        <div>
+        <div className='flex gap-x-2'>
           <ListaDeCategorias />
           <ListaTendencias />
           <ListaDeGeneros />
         </div>
-      )}
+      </div>
     </div>
   )
 }

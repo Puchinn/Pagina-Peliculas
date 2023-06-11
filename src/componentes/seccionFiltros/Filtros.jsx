@@ -5,7 +5,7 @@ import { Form } from 'react-router-dom'
 
 export function Filtros() {
   return (
-    <div className='bg-base-300 rounded-md p-3 w-[30%] hidden lg:block'>
+    <div className='rounded-md p-3 hidden lg:block'>
       <Form action='/busqueda' className='flex flex-col gap-y-3 my-2'>
         <input
           placeholder='Buscar pelicula'

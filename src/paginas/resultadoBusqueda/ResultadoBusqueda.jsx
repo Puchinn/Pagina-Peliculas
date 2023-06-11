@@ -7,13 +7,16 @@ export default function ResultadoBusqueda() {
 
   return (
     <>
-      {isLoading && <Loading />}
-      <StyledPage
-        paginas={paginas}
-        peliculas={peliculas}
-        titulo={titulo}
-        url={url}
-      />
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <StyledPage
+          paginas={paginas}
+          peliculas={peliculas}
+          titulo={titulo}
+          url={url}
+        />
+      )}
     </>
   )
 }
