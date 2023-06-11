@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import Inicio from './paginas/Inicio'
+import Inicio from './paginas/inicio/Inicio.jsx'
 import Peliculas from './paginas/paginasDePeliculas/peliculasPorCategoria/Peliculas'
 import PeliculaDetalles from './paginas/detallesPeliculas/PeliculaDetalles'
 
