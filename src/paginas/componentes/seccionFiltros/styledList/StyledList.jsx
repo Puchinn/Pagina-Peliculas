@@ -13,3 +13,16 @@ export function StyledList({ children, titulo }) {
     </div>
   )
 }
+
+export function ResponsiveList({ children, titulo }) {
+  return (
+    <ul className='menu'>
+      <li>
+        <details>
+          <summary>{titulo}</summary>
+          <ul>{children}</ul>
+        </details>
+      </li>
+    </ul>
+  )
+}
