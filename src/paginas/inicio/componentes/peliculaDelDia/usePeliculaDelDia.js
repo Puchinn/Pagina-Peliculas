@@ -1,9 +1,9 @@
 import useSWR from 'swr'
 import { getTrendingMovies } from '../../../../servicios/getTrendingMovies'
-import { useIdiomaContext } from '../../../../hooks/useIdiomaContext'
+import { useDataContext } from '../../../../hooks/useDataContext'
 
 export function usePeliculaDelDia() {
-  const { idioma } = useIdiomaContext()
+  const { idioma } = useDataContext()
   const { data, isLoading } = useSWR([idioma], () => getTrendingMovies({ date: "day", lang: idioma }))
   const pelicula = data && data.results[0]
   const objPelicula = data && {

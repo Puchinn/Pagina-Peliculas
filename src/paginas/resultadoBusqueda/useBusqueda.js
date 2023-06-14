@@ -2,7 +2,7 @@ import { getMoviesBySearch } from '../../servicios/getMoviesBySearch'
 import { useSearchParams } from 'react-router-dom'
 import { useState, useEffect, useRef } from 'react'
 import { peliculasMapeadas } from '../../adaptadores/mappedMovies'
-import { useIdiomaContext } from '../../hooks/useIdiomaContext'
+import { useIdiomaContext } from '../../hooks/useDataContext'
 import { paginasAdaptadas } from './../../adaptadores/adaptedPages'
 import { useLocation } from 'react-router-dom'
 

@@ -4,14 +4,14 @@ import App from './App.jsx'
 import './index.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Inicio from './paginas/inicio/Inicio.jsx'
-import Peliculas from './paginas/paginasDePeliculas/peliculasPorCategoria/Peliculas'
-import PeliculaDetalles from './paginas/detallesPeliculas/PeliculaDetalles'
+import Peliculas from './paginas/peliculasCategoria/Peliculas.jsx'
+import PeliculaDetalles from './paginas/peliculasDetalles/PeliculaDetalles'
 
 const PaginaTendencias = React.lazy(() =>
-  import('./paginas/paginasDePeliculas/tendencias/PaginaTendencias')
+  import('./paginas/peliculasTendencia/PaginaTendencias.jsx')
 )
 const PaginaGeneros = React.lazy(() =>
-  import('./paginas/paginasDePeliculas/generos/PaginaGeneros')
+  import('./paginas/peliculasGenero/PaginaGeneros.jsx')
 )
 const ResultadoBusqueda = React.lazy(() =>
   import('./paginas/resultadoBusqueda/ResultadoBusqueda')

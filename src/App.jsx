@@ -1,12 +1,12 @@
-import { Header } from './componentes/header/Header'
-import { IdiomaProvider } from './contexto/IdiomaProvider'
-import { Outlet } from 'react-router-dom'
 import { Suspense } from 'react'
+import { Outlet } from 'react-router-dom'
 import { Footer } from './componentes/footer/Footer'
+import { Header } from './componentes/header/Header'
+import { ContextProvider } from './contexto/ContextProvider'
 
 function App() {
   return (
-    <IdiomaProvider>
+    <ContextProvider>
       <Header />
       <main>
         <Suspense>
@@ -14,7 +14,7 @@ function App() {
         </Suspense>
       </main>
       <Footer />
-    </IdiomaProvider>
+    </ContextProvider>
   )
 }
 

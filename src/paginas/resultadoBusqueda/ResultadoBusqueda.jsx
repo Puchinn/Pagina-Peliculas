@@ -1,5 +1,5 @@
 import { useBusqueda } from './useBusqueda'
-import { StyledPage } from '../paginasDePeliculas/styledPage/StyledPage'
+import { StyledPage } from '../../componentes/styledPage/StyledPage'
 import { Loading } from '../../componentes/loading/Loading'
 
 export default function ResultadoBusqueda() {

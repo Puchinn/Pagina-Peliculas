@@ -1,11 +1,11 @@
 import { getMoviesByCategory } from "../../../../../servicios/getMoviesByCategory"
 import { peliculasMapeadas } from './../../../../../adaptadores/mappedMovies'
-import { useIdiomaContext } from "../../../../../hooks/useIdiomaContext"
+import { useDataContext } from "../../../../../hooks/useDataContext"
 import useSWR from 'swr'
 
 
 export function useDataPopular() {
-  const { idioma } = useIdiomaContext()
+  const { idioma } = useDataContext()
 
   const { data, isLoading } = useSWR(idioma, () => (
     getMoviesByCategory({ category: 'popular', lang: idioma })
