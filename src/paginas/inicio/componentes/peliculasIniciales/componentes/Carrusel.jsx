@@ -1,7 +1,7 @@
 import AliceCarousel from 'react-alice-carousel'
+import 'react-alice-carousel/lib/alice-carousel.css'
 import { Link } from 'react-router-dom'
 import { PeliculaCard } from './../../../../../componentes/pelicula/PeliculaCard'
-import 'react-alice-carousel/lib/alice-carousel.css'
 
 export function Carrusel({ peliculas, urlLink, titulo, children, isLoading }) {
   const peliItems = peliculas?.map((peli) => (

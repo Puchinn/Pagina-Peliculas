@@ -4,6 +4,7 @@ import { Loading } from '../../componentes/loading/Loading'
 
 export default function PaginaGeneros() {
   const { titulo, peliculas, isLoading, paginas, url } = usePaginaGeneros()
+
   return (
     <>
       {isLoading && <Loading />}
