@@ -1,37 +1,27 @@
-import { getMoviesBySearch } from '../../servicios/getMoviesBySearch'
 import { useSearchParams } from 'react-router-dom'
-import { useState, useEffect, useRef } from 'react'
+import useSWR from 'swr'
 import { peliculasMapeadas } from '../../adaptadores/mappedMovies'
-import { useIdiomaContext } from '../../hooks/useDataContext'
+import { useDataContext } from '../../hooks/useDataContext'
+import { getMoviesBySearch } from '../../servicios/getMoviesBySearch'
 import { paginasAdaptadas } from './../../adaptadores/adaptedPages'
-import { useLocation } from 'react-router-dom'
+
 
 export function useBusqueda() {
+  const { idioma } = useDataContext()
   const [parametros] = useSearchParams()
-  const query = parametros.get('query').split('/')
-  const queryParam = query[0]
-  const [peliculas, setPeliculas] = useState([])
-  const [isLoading, setIsLoading] = useState(false)
-  const { idioma } = useIdiomaContext()
-  const paginas = useRef()
-  const url = '/busqueda?query=' + query[0]
-  const page = query[2]
-  const { pathname } = useLocation()
+  const busqueda = parametros.get('query').split('/')[0]
+  const page = parametros.get('query').split('/')[2]
+  const url = '/busqueda?query=' + busqueda
+  let paginas = {}
 
-  useEffect(() => {
-    window.scrollTo(0, 0)
-    const controller = new AbortController()
-    setIsLoading(true)
-    getMoviesBySearch({ query: queryParam, lang: idioma, page: page || 1 }, controller)
-      .then(res => {
-        const nuevasPelis = peliculasMapeadas({ originalMovies: res.results })
-        paginas.current = paginasAdaptadas({ pagesObject: res })
-        setPeliculas(nuevasPelis)
-        setIsLoading(false)
-      })
+  const { data, isLoading } = useSWR(['useDataBusquedaPeliculas', idioma, busqueda, page], () => (
+    getMoviesBySearch({ query: busqueda, lang: idioma, page: page })
+  ))
+  window.scrollTo(0, 0)
 
-    return () => controller.abort()
-  }, [queryParam, idioma, page, pathname])
+  const peliculas = data && peliculasMapeadas({ originalMovies: data.results })
+  paginas = data && paginasAdaptadas({ pagesObject: data })
 
-  return { peliculas, titulo: queryParam, paginas: paginas.current, url, isLoading }
+
+  return { peliculas, titulo: busqueda, paginas, url, isLoading }
 }
