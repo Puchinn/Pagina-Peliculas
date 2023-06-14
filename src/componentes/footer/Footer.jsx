@@ -1,6 +1,6 @@
 export function Footer() {
   return (
-    <footer className='pt-28 pb-8 bg-gradient-to-t from-gray-700 via-gray-900 to-black text-white'>
+    <footer className='mt-32 pb-8 bg-gradient-to-t from-zinc-900 to-black text-white'>
       <div className='relative mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8 lg:pt-24'>
         <h2 className='text-3xl font-bold text-center lg:text-left'>
           Pagina de Peliculas
