@@ -1,7 +1,7 @@
-import { useIdiomaContext } from "./useIdiomaContext"
+import { useDataContext } from "./useDataContext"
 
 export function useGeneros() {
-  const { generos } = useIdiomaContext()
+  const { generos } = useDataContext()
 
   return { generos }
 }
