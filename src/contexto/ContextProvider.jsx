@@ -1,8 +1,8 @@
-import { idiomaContext } from './idioma'
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { getListOfGeners } from '../servicios/getListOfGeners'
+import { dataContext } from './data'
 
-export function IdiomaProvider({ children }) {
+export function ContextProvider({ children }) {
   const [idioma, setIdioma] = useState('es-MX')
   const [generos, setGeneros] = useState([])
   const updateLanguage = (evento) => {
@@ -14,8 +14,8 @@ export function IdiomaProvider({ children }) {
   }, [idioma])
 
   return (
-    <idiomaContext.Provider value={{ idioma, updateLanguage, generos }}>
+    <dataContext.Provider value={{ idioma, updateLanguage, generos }}>
       {children}
-    </idiomaContext.Provider>
+    </dataContext.Provider>
   )
 }
