@@ -1,20 +1,20 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { getListOfGeners } from '../servicios/getListOfGeners'
 import { dataContext } from './data'
+import useSWR from 'swr'
 
 export function ContextProvider({ children }) {
   const [idioma, setIdioma] = useState('es-MX')
-  const [generos, setGeneros] = useState([])
   const updateLanguage = (evento) => {
     setIdioma(evento.target.value)
   }
 
-  useEffect(() => {
-    getListOfGeners({ lang: idioma }).then((res) => setGeneros(res))
-  }, [idioma])
+  const { data } = useSWR(['listaDeGeneros', idioma], () =>
+    getListOfGeners({ lang: idioma })
+  )
 
   return (
-    <dataContext.Provider value={{ idioma, updateLanguage, generos }}>
+    <dataContext.Provider value={{ idioma, updateLanguage, generos: data }}>
       {children}
     </dataContext.Provider>
   )

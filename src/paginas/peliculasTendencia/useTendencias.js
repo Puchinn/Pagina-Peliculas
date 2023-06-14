@@ -1,5 +1,5 @@
-import { useEffect, useRef, useState } from "react";
-import { useLocation, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom"
+import useSWR from "swr";
 import { paginasAdaptadas } from '../../adaptadores/adaptedPages'
 import { peliculasMapeadas } from '../../adaptadores/mappedMovies'
 import { useDataContext } from '../../hooks/useDataContext'
@@ -16,28 +16,21 @@ const VALORES_TENDENCIAS = {
 }
 
 export function useTendencias() {
-  const { query: categoria = 'del_dia', page = 1 } = useParams()
   const { idioma } = useDataContext()
-  const [peliculas, setPeliculas] = useState([])
+  const { query, page = 1 } = useParams()
+  const categoria = (query || 'del_dia')
+  const dateValue = VALORES_TENDENCIAS[categoria]
   const url = '/peliculas/tendencias/' + categoria
-  const paginas = useRef()
-  const [loading, setLoading] = useState(false)
-  const { pathname } = useLocation()
+  const titulo = TITULOS_TENDENDIAS[categoria]
+  let paginas = {}
 
-  useEffect(() => {
-    const controller = new AbortController()
-    window.scrollTo(0, 0)
-    setLoading(true)
-    getTrendingMovies({ date: VALORES_TENDENCIAS[categoria], lang: idioma, page: page }, controller)
-      .then(res => {
-        const nuevasPelis = peliculasMapeadas({ originalMovies: res.results })
-        paginas.current = paginasAdaptadas({ pagesObject: res })
-        setPeliculas(nuevasPelis)
-        setLoading(false)
-      })
+  const { data, isLoading } = useSWR(['useDataPeliculasPorTendencia', idioma, categoria, page], () => (
+    getTrendingMovies({ date: dateValue, lang: idioma, page: page })
+  ))
+  window.scrollTo(0, 0)
 
-    return () => controller.abort()
-  }, [idioma, categoria, page, pathname])
+  const peliculas = data && peliculasMapeadas({ originalMovies: data.results })
+  paginas = data && paginasAdaptadas({ pagesObject: data })
 
-  return { titulo: TITULOS_TENDENDIAS[categoria], peliculas, paginas: paginas.current, url, isLoading: loading }
+  return { titulo, peliculas, paginas, url, isLoading }
 }

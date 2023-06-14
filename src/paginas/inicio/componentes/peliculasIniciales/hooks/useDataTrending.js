@@ -1,14 +1,14 @@
 import { useState } from "react"
-import { getTrendingMovies } from "../../../../../servicios/getTrendingMovies"
+import useSWR from 'swr'
 import { peliculasMapeadas } from "../../../../../adaptadores/mappedMovies"
 import { useDataContext } from "../../../../../hooks/useDataContext"
-import useSWR from 'swr'
+import { getTrendingMovies } from "../../../../../servicios/getTrendingMovies"
 
 export function useDataTrending() {
   const { idioma } = useDataContext()
   const [clave, setClave] = useState('day')
 
-  const { data, isLoading } = useSWR([idioma, clave], () => (
+  const { data, isLoading } = useSWR(['getDataTrendingInicial', idioma, clave], () => (
     getTrendingMovies({ date: clave, lang: idioma })
   ))
   const peliculas = data && peliculasMapeadas({ originalMovies: data.results })

@@ -1,37 +1,28 @@
-import { useEffect, useRef, useState } from 'react'
-import { useLocation, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { paginasAdaptadas } from '../../adaptadores/adaptedPages'
 import { peliculasMapeadas } from '../../adaptadores/mappedMovies'
-import { useGeneros } from '../../hooks/useGeneros'
 import { useDataContext } from '../../hooks/useDataContext'
+import { useGeneros } from '../../hooks/useGeneros'
 import { getMoviesByGeners } from '../../servicios/getMoviesByGeners'
+import useSWR from 'swr'
 
 export function usePaginaGeneros() {
   const { idioma } = useDataContext()
-  const { query: id = '28', page = 1 } = useParams()
+  const { query, page = 1 } = useParams()
+  const id = (query || '28')
   const { generos } = useGeneros()
-  const [peliculas, setPeliculas] = useState([])
-  const findGenero = generos.find(obj => obj.id === parseInt(id))
+  const findGenero = generos?.find(obj => obj.id === parseInt(id))
   const titulo = findGenero?.name ?? 'Sin generos'
-  const paginas = useRef()
   const url = '/peliculas/generos/' + id
-  const [isLoading, setIsLoading] = useState(false)
-  const { pathname } = useLocation()
+  let paginas = {}
 
-  useEffect(() => {
-    const controller = new AbortController()
-    window.scrollTo(0, 0)
-    setIsLoading(true)
-    getMoviesByGeners({ gener: findGenero?.id, lang: idioma, page: page }, controller)
-      .then(res => {
-        const nuevasPelis = peliculasMapeadas({ originalMovies: res.results })
-        paginas.current = paginasAdaptadas({ pagesObject: res })
-        setPeliculas(nuevasPelis)
-        setIsLoading(false)
-      })
+  const { data, isLoading } = useSWR(['getDataPeliculasPorGenero', idioma, page, id], () => (
+    getMoviesByGeners({ gener: id, lang: idioma, page: page })
+  ))
+  window.scrollTo(0, 0)
 
-    return () => controller.abort()
-  }, [findGenero?.id, idioma, page, pathname])
+  const peliculas = data && peliculasMapeadas({ originalMovies: data.results })
+  paginas = data && paginasAdaptadas({ pagesObject: data })
 
-  return { titulo, peliculas, isLoading, paginas: paginas.current, url }
+  return { titulo, peliculas, isLoading, paginas, url }
 }

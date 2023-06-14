@@ -1,5 +1,5 @@
-import { useEffect, useRef, useState } from 'react'
-import { useLocation, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
+import useSWR from 'swr'
 import { paginasAdaptadas } from '../../adaptadores/adaptedPages'
 import { peliculasMapeadas } from '../../adaptadores/mappedMovies'
 import { useDataContext } from '../../hooks/useDataContext'
@@ -20,29 +20,20 @@ const VALORES_CATEGORIAS = {
 }
 
 export function usePeliculas() {
-  const { query: categoria = 'popular', page = 1 } = useParams()
-  const url = '/peliculas/' + categoria
-  const [peliculas, setPeliculas] = useState([])
+  const { query, page = 1 } = useParams()
   const { idioma } = useDataContext()
-  const titulo = TITULOS_CATEGORIAS[categoria] || 'Populares'
-  const paginas = useRef()
-  const [isLoading, setIsLoading] = useState(false)
-  const { pathname } = useLocation()
+  const url = '/peliculas/' + (query || 'popular')
+  const categoria = VALORES_CATEGORIAS[query] || 'popular'
+  const titulo = TITULOS_CATEGORIAS[query] || 'Populares'
+  let paginas = {}
 
-  useEffect(() => {
-    const controller = new AbortController()
-    window.scrollTo(0, 0)
-    setIsLoading(true)
-    getMoviesByCategory({ category: VALORES_CATEGORIAS[categoria], lang: idioma, page: page }, controller)
-      .then(res => {
-        const nuevasPelis = peliculasMapeadas({ originalMovies: res.results })
-        paginas.current = paginasAdaptadas({ pagesObject: res })
-        setPeliculas(nuevasPelis)
-        setIsLoading(false)
-      })
+  const { data, isLoading } = useSWR(['getDataPeliculasPorCategoria', categoria, idioma, page], () => (
+    getMoviesByCategory({ category: categoria, lang: idioma, page: page })
+  ))
+  window.scrollTo(0, 0)
 
-    return () => controller.abort()
-  }, [categoria, idioma, page, pathname])
+  const peliculas = data && peliculasMapeadas({ originalMovies: data.results })
+  paginas = data && paginasAdaptadas({ pagesObject: data })
 
-  return { titulo, peliculas, isLoading, paginas: paginas.current, url }
+  return { titulo, peliculas, isLoading, paginas, url }
 }
