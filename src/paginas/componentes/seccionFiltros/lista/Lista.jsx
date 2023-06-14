@@ -5,7 +5,7 @@ import { useGeneros } from './../../../../hooks/useGeneros'
 export function Lista() {
   const { generos } = useGeneros()
   return (
-    <>
+    <div className='hidden sm:flex space-x-2 justify-center'>
       <StyledList titulo={'Categorias'}>
         <StyledLink to={'/peliculas/populares'}>Mas Populares</StyledLink>
         <StyledLink to={'/peliculas/en_vivo'}>En Vivo</StyledLink>
@@ -25,6 +25,6 @@ export function Lista() {
           </StyledLink>
         ))}
       </StyledList>
-    </>
+    </div>
   )
 }

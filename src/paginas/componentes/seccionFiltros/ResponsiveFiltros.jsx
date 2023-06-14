@@ -1,11 +1,15 @@
 import { Lista } from './lista/Lista'
+import { ListaResponsive } from './lista/ListaResponsive'
 import { Form } from 'react-router-dom'
 
 export function ResponsiveFiltros() {
   return (
     <div className='p-5 mb-4 rounded-md'>
-      <div className='gap-x-2 flex items-center justify-center'>
-        <Form action='/busqueda' className='input-group max-w-md'>
+      <div className='gap-x-2 space-y-3 xl:flex items-center justify-center xl:space-y-0'>
+        <Form
+          action='/busqueda'
+          className='input-group max-w-md mx-auto xl:mx-0'
+        >
           <input
             name='query'
             type='text'
@@ -29,9 +33,8 @@ export function ResponsiveFiltros() {
             </svg>
           </button>
         </Form>
-        <div className='flex gap-x-2'>
-          <Lista />
-        </div>
+        <Lista />
+        <ListaResponsive />
       </div>
     </div>
   )
