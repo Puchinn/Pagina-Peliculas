@@ -5,7 +5,7 @@ import 'react-alice-carousel/lib/alice-carousel.css'
 
 export function Carrusel({ peliculas, urlLink, titulo, children, isLoading }) {
   const peliItems = peliculas?.map((peli) => (
-    <PeliculaCard key={peli.id} objPelicula={peli} />
+    <PeliculaCard key={peli.id} pelicula={peli} />
   ))
 
   return (
