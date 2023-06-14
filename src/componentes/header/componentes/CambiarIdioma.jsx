@@ -1,7 +1,7 @@
-import { useIdiomaContext } from '../../../hooks/useIdiomaContext'
+import { useDataContext } from '../../../hooks/useDataContext'
 
 export function CambiarIdioma() {
-  const { idioma, updateLanguage } = useIdiomaContext()
+  const { idioma, updateLanguage } = useDataContext()
 
   return (
     <select
