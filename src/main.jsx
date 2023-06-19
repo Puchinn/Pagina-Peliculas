@@ -6,6 +6,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Inicio from './paginas/inicio/Inicio.jsx'
 import Peliculas from './paginas/peliculasCategoria/Peliculas.jsx'
 import PeliculaDetalles from './paginas/peliculasDetalles/PeliculaDetalles'
+import { Series } from './paginas/series/Series.jsx'
 
 const PaginaTendencias = React.lazy(() =>
   import('./paginas/peliculasTendencia/PaginaTendencias.jsx')
@@ -47,6 +48,10 @@ const router = createBrowserRouter([
       {
         path: '/busqueda/page?/:page?',
         element: <ResultadoBusqueda />,
+      },
+      {
+        path: '/series',
+        element: <Series />,
       },
     ],
   },
