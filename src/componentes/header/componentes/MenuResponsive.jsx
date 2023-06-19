@@ -18,7 +18,7 @@ export function MenuResponsive() {
           <Link to={'/peliculas'}>Peliculas</Link>
         </li>
         <li>
-          <Link to={'/peliculas'}>Series</Link>
+          <Link to={'/series'}>Series</Link>
         </li>
       </ul>
     </div>
