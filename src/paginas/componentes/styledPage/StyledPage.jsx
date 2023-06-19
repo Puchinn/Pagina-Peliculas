@@ -1,8 +1,13 @@
 import { ListaDePeliculas } from '../listaDePeliculas/ListaDePeliculas'
 import { Paginacion } from '../paginacion/Paginacion'
 import { ResponsiveFiltros } from '../seccionFiltros/ResponsiveFiltros'
+import { Loading } from './../../../componentes/loading/Loading'
 
-export function StyledPage({ titulo, peliculas, paginas, url }) {
+export function StyledPage({ titulo, peliculas, paginas, url, isLoading }) {
+  if (isLoading) {
+    return <Loading />
+  }
+
   return (
     <section>
       <div className='max-w-7xl mx-auto p-1 sm:p-3'>
