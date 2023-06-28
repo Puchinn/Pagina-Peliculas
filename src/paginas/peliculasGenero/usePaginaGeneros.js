@@ -9,16 +9,17 @@ import useSWR from 'swr'
 export function usePaginaGeneros() {
   const { idioma } = useDataContext()
   const { query, page = 1 } = useParams()
-  const id = (query || '28')
+  const id = query || '28'
   const { generos } = useGeneros()
-  const findGenero = generos?.find(obj => obj.id === parseInt(id))
+  const findGenero = generos?.find((obj) => obj.id === parseInt(id))
   const titulo = findGenero?.name ?? 'Sin generos'
   const url = '/peliculas/generos/' + id
   let paginas = {}
 
-  const { data, isLoading } = useSWR(['getDataPeliculasPorGenero', idioma, page, id], () => (
-    getMoviesByGeners({ gener: id, lang: idioma, page: page })
-  ))
+  const { data, isLoading } = useSWR(
+    ['getDataPeliculasPorGenero', idioma, page, id],
+    () => getMoviesByGeners({ gener: id, lang: idioma, page: page })
+  )
   window.scrollTo(0, 0)
 
   const peliculas = data && peliculasMapeadas({ originalMovies: data.results })

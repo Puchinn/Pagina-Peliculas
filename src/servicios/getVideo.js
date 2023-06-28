@@ -1,6 +1,6 @@
 const { VITE_API_KEY } = import.meta.env
 const api = '?api_key=' + VITE_API_KEY
-import { video } from "../adaptadores/video"
+import { video } from '../adaptadores/video'
 
 export async function getVideo({ id, lang }) {
   const url = `https://api.themoviedb.org/3/movie/${id}/videos`

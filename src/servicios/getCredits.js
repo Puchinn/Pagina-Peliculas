@@ -1,6 +1,6 @@
 const { VITE_API_KEY } = import.meta.env
 const api = '?api_key=' + VITE_API_KEY
-import { equipo } from './../adaptadores/equipo';
+import { equipo } from './../adaptadores/equipo'
 
 export async function getCredits({ movieId, lang }, controlador) {
   const url = `https://api.themoviedb.org/3/movie/${movieId}/credits`

@@ -9,14 +9,14 @@ const TITULOS_CATEGORIAS = {
   populares: 'Populares',
   en_vivo: 'En Vivo',
   estrenos: 'Estrenos',
-  mas_valoradas: 'Mas Valoradas'
+  mas_valoradas: 'Mas Valoradas',
 }
 
 const VALORES_CATEGORIAS = {
   populares: 'popular',
   en_vivo: 'now_playing',
   estrenos: 'upcoming',
-  mas_valoradas: 'top_rated'
+  mas_valoradas: 'top_rated',
 }
 
 export function usePeliculas() {
@@ -27,9 +27,10 @@ export function usePeliculas() {
   const titulo = TITULOS_CATEGORIAS[query] || 'Populares'
   let paginas = {}
 
-  const { data, isLoading } = useSWR(['getDataPeliculasPorCategoria', categoria, idioma, page], () => (
-    getMoviesByCategory({ category: categoria, lang: idioma, page: page })
-  ))
+  const { data, isLoading } = useSWR(
+    ['getDataPeliculasPorCategoria', categoria, idioma, page],
+    () => getMoviesByCategory({ category: categoria, lang: idioma, page: page })
+  )
   window.scrollTo(0, 0)
 
   const peliculas = data && peliculasMapeadas({ originalMovies: data.results })

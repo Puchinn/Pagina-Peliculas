@@ -12,6 +12,6 @@ export function movideDetails({ obj }) {
     lanzamiento: obj.release_date,
     popularidad: obj.popularity,
     calificacion: obj.vote_average,
-    duracion: obj.runtime
+    duracion: obj.runtime,
   }
 }
